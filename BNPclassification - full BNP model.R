@@ -85,7 +85,14 @@ corr.unit <- 7
 ### Load Data
 
 load('BNCLD_sim1_1.RData')
-attach(data)
+# The RData file contains 3 objects defining the dataset.
+# data is 3-column data.frame.
+###  ID represents the ID number corresponding to which patient that measurement corresponds.
+###  NOTE: IDs must be consecutive.
+###  Times gives the observation time for the measurement.
+###  logHCG gives the longitudinal response value for that patient ID and measurement time.
+# Disease gives the binary indicators of classification/disease status.
+# n.pat gives the total number of patients/observational units.
 
 
 
