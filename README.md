@@ -1,6 +1,6 @@
 # BNPclassification
 
-This repostitory contains the files need to run the methods outlined in the manuscript "A Bayesian Nonparametric Model for Classification of Longitudinal Profiles" by Jeremy Gaskins, Claudio Fuentes, and Rolando de la Cruz.
+This repostitory contains the files need to run the methods outlined in the manuscript "A Bayesian Nonparametric Model for Classification of Longitudinal Profiles" by Jeremy Gaskins, Claudio Fuentes, and Rolando de la Cruz (https://arxiv.org/abs/1711.01512).
 
 This contains the following files:
 <ul>
