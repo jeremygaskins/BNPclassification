@@ -1,5 +1,5 @@
 ##################################################
-### Simulation Specification Choices
+### Read in MCMC output from two component model
 
 # load('BNPclassification - two component model.RData')
 
@@ -80,21 +80,20 @@ points(10:80,theta.function(10:80, apply(keep.theta,1:2,mean)[2,]),
 
 #################################
 ## Compute log-likelihood function by iteration
-if( !exists('cluster.ind') ){
-	attach(data)
-	cluster.ind <- array(FALSE, c(n.pat,2))
-	cluster.ind[,1] <- as.logical(!Disease)
-	cluster.ind[,2] <- as.logical(Disease)
+attach(data)
+cluster.ind <- array(FALSE, c(n.pat,2))
+cluster.ind[,1] <- as.logical(!Disease)
+cluster.ind[,2] <- as.logical(Disease)
 
-	logHCG.clust <- Times.clust <- ID.clust <- Corr.matrix <-
-		as.list(rep(NA,ncol(cluster.ind)))
-	for( k in 1:ncol(cluster.ind) ){
-		logHCG.clust[[k]] <- logHCG[ ID %in% (1:n.pat)[cluster.ind[,k]] ]
-		Times.clust[[k]] <- Times[ ID %in% (1:n.pat)[cluster.ind[,k]] ]
-		ID.clust[[k]] <- ID[ ID %in% (1:n.pat)[cluster.ind[,k]] ]
-	}
-	library(mvtnorm)
+logHCG.clust <- Times.clust <- ID.clust <- Corr.matrix <-
+	as.list(rep(NA,ncol(cluster.ind)))
+for( k in 1:ncol(cluster.ind) ){
+	logHCG.clust[[k]] <- logHCG[ ID %in% (1:n.pat)[cluster.ind[,k]] ]
+	Times.clust[[k]] <- Times[ ID %in% (1:n.pat)[cluster.ind[,k]] ]
+	ID.clust[[k]] <- ID[ ID %in% (1:n.pat)[cluster.ind[,k]] ]
 }
+library(mvtnorm)
+
 
 loglik <- dbinom(sum(Disease, na.rm=T), sum(!is.na(Disease)), keep.phi, log=T)
 for( k in 1:ncol(cluster.ind) ){
